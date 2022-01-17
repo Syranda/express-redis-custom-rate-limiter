@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { createClient } from "redis";
 
-const defaultOptopns = {
+const defaultOptions = {
     timeWindow: 5,
     maxRequests: 10,
     identifier: (req: Request): string => req.ip,
@@ -12,22 +12,22 @@ const defaultOptopns = {
 
 function rateLimit(
     redisClient: ReturnType<typeof createClient>,
-    options = defaultOptopns
+    options: Partial<typeof defaultOptions> = defaultOptions
 ) {
     const timeWindow =
-        options.timeWindow || defaultOptopns.timeWindow;
+        options.timeWindow || defaultOptions.timeWindow;
     const maxRequests =
-        options.maxRequests || defaultOptopns.maxRequests;
+        options.maxRequests || defaultOptions.maxRequests;
     const identifier =
-        options.identifier || defaultOptopns.identifier;
+        options.identifier || defaultOptions.identifier;
 
-    const logger = options.logger || defaultOptopns.logger;
+    const logger = options.logger || defaultOptions.logger;
     const enableLogging =
-        options.enableLogging || defaultOptopns.enableLogging;
+        options.enableLogging || defaultOptions.enableLogging;
 
     const denyUndefinedIdentifier =
         options.denyUndefinedIdentifier ||
-        defaultOptopns.denyUndefinedIdentifier;
+        defaultOptions.denyUndefinedIdentifier;
 
     return async (
         req: Request,
