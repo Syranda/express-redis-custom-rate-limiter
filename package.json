@@ -1,0 +1,19 @@
+{
+    "name": "express-redis-custom-rate-limiter",
+    "description": "A custom rate limiter express middleware using redis",
+    "version": "1.0.0",
+    "author": "Maxin Becker",
+    "license": "MIT",
+    "dependencies": {},
+    "types": "dist/index.d.ts",
+    "main": "dist/index.js",
+    "scripts": {
+        "prepublish": "tsc",
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.13",
+        "@types/redis": "^4.0.11",
+        "typescript": "^4.5.4"
+    }
+}
